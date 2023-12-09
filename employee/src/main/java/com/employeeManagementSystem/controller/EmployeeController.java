@@ -24,34 +24,34 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeService;
 	
-	// POST - create employee
+	// POST - to create employee
 	@PostMapping("/")
 	public ResponseEntity<EmployeeDto> createEmployee(@RequestBody EmployeeDto employeeDto){
 		EmployeeDto createEmployeeDto = this.employeeService.createEmployee(employeeDto);
 		return new ResponseEntity<>(createEmployeeDto, HttpStatus.CREATED);
 	}
 	
-	// PUT - update employee
+	// PUT - to update employee
 	@PutMapping("/{employeeId}")
 	public ResponseEntity<EmployeeDto> updateEmployee(@RequestBody EmployeeDto employeeDto, @PathVariable("employeeId") Integer uid){
 		EmployeeDto updateEmployee = this.employeeService.updateEmployee(employeeDto, uid);
 		return ResponseEntity.ok(updateEmployee);
 	}
 
-	// DELETE - delete employee
+	// DELETE - to delete employee
 	@DeleteMapping("/{employeeId}")
 	public ResponseEntity<ApiResponse> deleteUser(@PathVariable("employeeId") Integer uid){
 		this.employeeService.deleteEmployee(uid);
 		return new ResponseEntity<ApiResponse>(new ApiResponse("User deleted successfully" , true),HttpStatus.OK);
 	}
 	
-	// GET - user get
+	// GET - to get employee list with details
 	@GetMapping("/")
 	public ResponseEntity<List<EmployeeDto>> getAllEmployees(){
 		return ResponseEntity.ok(this.employeeService.getAllEmployees());
 	}
 	
-	// GET - user get
+	// GET - to get single employee details
 		@GetMapping("/{employeeId}")
 		public ResponseEntity<EmployeeDto>getSingleEmployee(@PathVariable Integer employeeId){
 			return ResponseEntity.ok(this.employeeService.getEmployeeById(employeeId));
