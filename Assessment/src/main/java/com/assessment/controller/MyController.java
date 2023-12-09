@@ -15,16 +15,11 @@ public class MyController {
 
     @GetMapping("/finddata")
     public Map<String, String> getData() {
-        // Return the existing data in the HashMap
         return responseMap;
     }
 
     @PostMapping("/data")
     public Map<String, String> addData(@RequestBody Map<Object, Object> dataMap) {
-        // Add new data to the HashMap
-		/* responseMap.put(id, name); */
-
-        // Return the updated data in the HashMap
     	System.out.print(responseMap);
     	Set<Entry<Object, Object>> entrySet = dataMap.entrySet();
     	for(Entry<Object, Object> data:entrySet) {
